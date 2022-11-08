@@ -1,4 +1,4 @@
-# Todo List
+# Newsletter
 
 This is just a little practice project that allows users to subscribe to my newsletters using mailchimp API.
 
