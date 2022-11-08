@@ -43,6 +43,13 @@ app.post("/", function(req, res) {
   }
 
   const request = https.request(url, options, function(response) {
+
+   if (response.statusCode == 200) {
+    res.send("Successfully Subscribed!")
+   } else {
+    res.send("Error! Please try again.")
+   }
+
     response.on("data", function (data) {
       console.log(JSON.parse(data));
     })
