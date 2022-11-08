@@ -42,9 +42,14 @@ app.post("/", function(req, res) {
     auth: "cristian1:9d29abad1549eb4660adefe3d956418e-us13"
   }
 
-  https.request(url, options, function(response) {
-
+  const request = https.request(url, options, function(response) {
+    response.on("data", function (data) {
+      console.log(JSON.parse(data));
+    })
   })
+
+  request.write(jsonData);
+  request.end();
 
 });
 
