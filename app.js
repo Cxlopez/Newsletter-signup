@@ -45,9 +45,9 @@ app.post("/", function(req, res) {
   const request = https.request(url, options, function(response) {
 
    if (response.statusCode == 200) {
-    res.send("Successfully Subscribed!")
+    res.sendFile(__dirname + "/success.html");
    } else {
-    res.send("Error! Please try again.")
+    res.sendFile(__dirname + "/failure.html");
    }
 
     response.on("data", function (data) {
@@ -59,6 +59,14 @@ app.post("/", function(req, res) {
   request.end();
 
 });
+
+app.post("/failure", function(req, res) {
+  res.redirect("/");
+})
+
+app.post("/success", function(req, res) {
+  res.redirect("/");
+})
 
 app.listen(3000, function() {
   console.log("Server listening on port 3000");
