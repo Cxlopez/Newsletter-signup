@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
+const https = require("https");
+
 
 const app = express();
 
@@ -17,7 +19,27 @@ app.post("/", function(req, res) {
   let lastName = req.body.lname;
   let email = req.body.email;
 
-  console.log(firstName, lastName, email);
+  let data = {
+    members: [
+      {
+        email_address: email,
+        status: "subscribed",
+        merge_fields: {
+          FNAME: firstName,
+          LNAME: lastName
+        }
+
+      }
+    ]
+  }
+
+  let jsonData = JSON.stringify(data);
+
+  const url = "https://us13.api.mailchimp.com/3.0/lists/faefa093d4"
+
+  https.request(url, options, function(response) {
+
+  })
 
 });
 
@@ -26,3 +48,5 @@ app.listen(3000, function() {
 });
 
 // API KEY 9d29abad1549eb4660adefe3d956418e-us13
+
+//Audience ID: faefa093d4
